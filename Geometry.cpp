@@ -190,6 +190,7 @@ bool Point::includes(const Point& value) const {
 
 bool Point::cross(const Segment& seg) const {
 	return seg.includes(*this);
+}
 
 double Vector::angle(const Vector& vec) const {
 	return acos(*this * vec / (this->modul() * vec.modul()));
