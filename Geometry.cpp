@@ -4,15 +4,25 @@
 
 using namespace std;
 
+class Figure;
 class Point;
 class Vector;
-class Figure;
 class Line;
 class Segment;
 class Ray;
+class Polygon;
 
 
-class Point {
+
+class Figure {
+public:
+	virtual void shift(const Vector&) = 0;
+	virtual bool includes(const Point&) const = 0;
+};
+
+
+
+class Point: Figure {
 public:
 	double x_;
 	double y_;
@@ -66,14 +76,6 @@ public:
 	}
 	double angle(const Vector&) const;
 };		
-
-
-
-class Figure {
-public:
-	virtual void shift(const Vector&) = 0;
-	virtual bool includes(const Point&) const = 0;
-};
 
 
 
