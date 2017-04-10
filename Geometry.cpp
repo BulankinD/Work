@@ -12,7 +12,7 @@ class Segment;
 class Ray;
 class Polygon;
 
-
+const C = 0.0000000000001;
 
 class Figure {
 public:
@@ -251,7 +251,7 @@ void Line::shift(const Vector& vec) {
 
 bool Line::includes(const Point& value) const {
 	double tmp = a_ * value.x_ + b_ * value.y_;
-	return ((tmp <= -c_ + 0.0000000000001) && (tmp >= -c_ - 0.0000000000001));
+	return ((tmp <= -c_ + C) && (tmp >= -c_ - C));
 }
 
 bool Line::cross(const Segment & value) const {
@@ -410,7 +410,7 @@ bool Polygon::includes(const Point& value) const{
 		k = (one ^ two) < 0 ? 1 : -1;
 		angles += (one.angle(two) * k);
 	}
-	return !(fabs(angles) < 1.0000000001);
+	return !(fabs(angles) < 1 + C);
 }
 
 bool Polygon::cross(const Segment& seg) const {
