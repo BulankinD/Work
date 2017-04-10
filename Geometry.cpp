@@ -18,6 +18,7 @@ class Figure {
 public:
 	virtual void shift(const Vector&) = 0;
 	virtual bool includes(const Point&) const = 0;
+	virtual bool cross(const Segment&) const = 0;
 };
 
 
@@ -37,7 +38,7 @@ public:
 	void shift(const Vector& vec);
 	double dist(const Point& value) const;
 	bool includes(const Point&) const;
-
+	bool cross(const Segment&) const;
 };
 
 
@@ -187,7 +188,8 @@ bool Point::includes(const Point& value) const {
 		return false;
 }
 
-
+bool Point::cross(const Segment& seg) const {
+	return seg.includes(*this);
 
 double Vector::angle(const Vector& vec) const {
 	return acos(*this * vec / (this->modul() * vec.modul()));
@@ -458,13 +460,9 @@ double Polygon::square() const {
 
 
 double max(double a, double b) {
-	if (a > b)
-		return a;
-	return b;
+	return a > b ? a : b;
 }
 
 double min(double a, double b) {
-	if (a < b)
-		return a;
-	return b;
+	return a < b ? a : b;
 }
